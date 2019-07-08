@@ -18,12 +18,12 @@ public:
 	int pop(Task** pp_task);
 	bool is_empty();
 private:
-	std::atomic<bool>			m_inited	= false;
-	std::atomic<bool>			m_exit		= false;
-	std::deque<std::thread*>	m_pool		= std::deque<std::thread*>();
-	std::deque<Task*>			m_que		= std::deque<Task*>();
-	std::mutex					m_mtx;
-	std::condition_variable		m_cond;
+	std::atomic<bool>			m_inited{false};
+	std::atomic<bool>			m_exit{false};
+	std::deque<std::thread*>	m_pool{};
+	std::deque<Task*>			m_que{};
+	std::mutex					m_mtx{};
+	std::condition_variable		m_cond{};
 
 private:
 	static void task_cb_fct();
